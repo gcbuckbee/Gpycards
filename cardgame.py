@@ -7,7 +7,7 @@
 # 2016-Oct-31
 # ============================================================================================
 
-include Cards
+import Cards
 
 testCard = Card(6, 'Diamonds')
 print (testCard.rank ' of ', testCard.suit)
