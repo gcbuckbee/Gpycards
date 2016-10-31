@@ -7,5 +7,7 @@
 # 2016-Oct-31
 # ============================================================================================
 
-include * from pycards.py
+include Cards
 
+testCard = Card(6, 'Diamonds')
+print (testCard.rank ' of ', testCard.suit)
