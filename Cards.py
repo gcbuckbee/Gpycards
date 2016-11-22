@@ -15,10 +15,10 @@
 # =================================================================================
 # Card Object
 # =================================================================================
-def class Card(Suit, Rank):
-    def __init__(Suit, Rank):
-        self.faceUp = TRUE
-        self.faceDown = FALSE
+class Card:
+    def __init__(self, Rank, Suit):
+        self.faceUp = True
+        self.faceDown = False
         self.suit = Suit
         self.rank = Rank
         self.color = "Black"
@@ -35,7 +35,7 @@ def class Card(Suit, Rank):
 # Card Collection Object
 #   A collection of cards, in sequence
 # =================================================================================
-def class CardCollection():
+class CardCollection:
     def __init__():
         self.cards = []
         self.cardCount = 0
@@ -45,31 +45,36 @@ def class CardCollection():
         return
 
     def sort(Key):
-        if Key = "Rank" then
-        
-        elif Key = "Suit" then
-        
-        elif Key = "Both" then
-        
+        if Key == "Rank":
+            # sort based on Rank
+            print('Rank sort')
+        elif Key == "Suit":
+            # sort based on Suit
+            print('Suit sort')
+        elif Key == "Both":
+            print('Both sort')
+            # sort based on both ranks and suit
+            # (A234 of spades, then clubs, the hearts, then diamonds
+            
         return
         
         
-    def addCard(cardName)
+    def addCard(cardName):
         self.append(cardName)
         return
         
-    def removeCard(index)
+    def removeCard(index):
         del self[index]
         return
         
-    def draw()
+    def draw():
     # Drawing on the screen....not to be confused with drawing a card from the deck...
         return
         
 # =================================================================================
 # Deck Object
 # =================================================================================
-def class CardCollection() Deck() :
+class Deck(CardCollection) :
     def __init__():
         # create 52 card deck
         return
@@ -77,7 +82,7 @@ def class CardCollection() Deck() :
 # =================================================================================
 # Hand Object
 # =================================================================================
-def class CardCollection() Hand:
+class Hand(CardCollection):
     def __init__():
         return
         
@@ -85,13 +90,14 @@ def class CardCollection() Hand:
 # =================================================================================
 # Table Object
 # =================================================================================
-def class Table():
+class Table():
     def __init__():
         return
 
 # =================================================================================
 # Spot Object
 # =================================================================================
-def class Spot():
+class Spot():
     def __init__():
+        return
 
