@@ -5,9 +5,10 @@
 # --------------------------------------------------------------------------------------------
 # G. Buckbee
 # 2016-Oct-31
+# Updated 22-Nov-2016
 # ============================================================================================
 
-import Cards
+from Cards import *
 
-testCard = Card(6, 'Diamonds')
-print (testCard.rank ' of ', testCard.suit)
+testCard = Card('Six', 'Diamonds')
+print (testCard.rank, ' of ', testCard.suit)
