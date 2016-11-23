@@ -10,5 +10,7 @@
 
 from Cards import *
 
-testCard = Card('Six', 'Diamonds')
-print (testCard.rank, ' of ', testCard.suit)
+testDeck = Deck()
+testDeck.shuffleMe()
+testDeck.printCards()
+# print (testCard.rank, ' of ', testCard.suit)

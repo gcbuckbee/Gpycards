@@ -11,6 +11,8 @@
 #   * Spot (a location on the table where cards can be shown)
 # ---------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------
+from random import shuffle
+
 
 # =================================================================================
 # Card Object
@@ -21,7 +23,10 @@ class Card:
         self.faceDown = False
         self.suit = Suit
         self.rank = Rank
-        self.color = "Black"
+        if self.suit == "Clubs" or self.suit == "Spades":
+            self.color = "Black"
+        else:
+            self.color = "Red"
         return
         
     def flip():
@@ -36,12 +41,13 @@ class Card:
 #   A collection of cards, in sequence
 # =================================================================================
 class CardCollection:
-    def __init__():
+    def __init__(self):
         self.cards = []
         self.cardCount = 0
         return
         
-    def shuffle():
+    def shuffleMe(self):
+        shuffle(self.cards)
         return
 
     def sort(Key):
@@ -57,7 +63,11 @@ class CardCollection:
             # (A234 of spades, then clubs, the hearts, then diamonds
             
         return
-        
+
+    def printCards(self):
+        for card in self.cards:
+            eachCard = card
+            print(eachCard.rank, "of", eachCard.suit)        
         
     def addCard(cardName):
         self.append(cardName)
@@ -75,8 +85,19 @@ class CardCollection:
 # Deck Object
 # =================================================================================
 class Deck(CardCollection) :
-    def __init__():
+    def __init__(self):
         # create 52 card deck
+        ranks = ('Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King')
+        suits = ('Clubs', 'Hearts', 'Spades', 'Diamonds')
+        self.cards = []
+        for suit in suits:
+            for rank in ranks:
+                newCard = Card(rank, suit)
+                self.cards.append(newCard)
+                
+        return
+
+
         return
         
 # =================================================================================
