@@ -11,6 +11,20 @@
 from Cards import *
 
 testDeck = Deck()
-testDeck.shuffleMe()
+# testDeck.shuffleMe()
+
 testDeck.printCards()
+print('---------------')
+
+testHand = Hand()
+
+for i in range(1,5):
+    myCard = testDeck.dealCard(0)
+    testHand.addCard(myCard)
+
+# testHand.printCards()
+
+print (testDeck.countCards())
+print (testHand.countCards())
+
 # print (testCard.rank, ' of ', testCard.suit)
