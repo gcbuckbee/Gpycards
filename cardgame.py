@@ -7,24 +7,54 @@
 # 2016-Oct-31
 # Updated 22-Nov-2016
 # ============================================================================================
-
+# Imports
+# ===============================================================
 from Cards import *
+from CardTests import *
+import pygame
+from pygame.locals import *
+import os
+import time
 
-testDeck = Deck()
-# testDeck.shuffleMe()
+# ============================================================================================
+# Initializations
+# ===============================================================
+os.putenv('SDL_FBDEV', '/dev/fb1')
+pygame.init()
 
-testDeck.printCards()
-print('---------------')
+# ---------------------------------------------
+# Set up display
+# ---------------------------------------------
 
-testHand = Hand()
+pygame.mouse.set_visible(True)
+lcd = pygame.display.set_mode((800,600))
+lcd.fill((80,80,255))
+pygame.display.update()
 
-for i in range(1,5):
-    myCard = testDeck.dealCard(0)
-    testHand.addCard(myCard)
 
-# testHand.printCards()
+# -----------------------------------
+# Test Routines.  Comment them out when not in use
+# -----------------------------------
 
-print (testDeck.countCards())
-print (testHand.countCards())
+if test_all_card_objects(False):
+    print("Passed All Tests")
 
-# print (testCard.rank, ' of ', testCard.suit)
+# ============================================================================================
+# Main Loop
+# ===============================================================
+
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if (event.type == MOUSEBUTTONDOWN):
+            pos = pygame.mouse_get_pos()
+            print (pos)
+    pygame.display.update()
+    time.sleep(0.1)
+
+
+
+
+

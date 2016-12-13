@@ -12,6 +12,7 @@
 # ---------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------
 from random import shuffle
+from operator import itemgetter, attrgetter, methodcaller
 
 
 # =================================================================================
@@ -58,6 +59,14 @@ class Card:
         elif self.rank == 'King':
             self.cardValue = 13
 
+        # Assign aceValue = 14 for ranking Ace highest
+        
+        if self.rank == "Ace":
+            self.aceValue = 14
+        else:
+            self.aceValue = self.cardValue
+            
+
         return
     
             
@@ -78,25 +87,29 @@ class CardCollection:
         self.cards = []
         return
         
-    def shuffleMe(self):
+    def shuffle_cards(self):
         shuffle(self.cards)
         return
 
-    def sort(Key):
+    def sort_cards(self, Key):
         if Key == "Rank":
             # sort based on Rank
-            print('Rank sort')
+            # Note use cardValue rather than alphabetical by Rank 
+            self.cards.sort(key = attrgetter('cardValue'))
         elif Key == "Suit":
             # sort based on Suit
-            print('Suit sort')
+            self.cards.sort(key = attrgetter('suit'))
         elif Key == "Both":
-            print('Both sort')
             # sort based on both ranks and suit
             # (A234 of spades, then clubs, the hearts, then diamonds
-            
+            self.cards.sort(key = attrgetter('cardValue'))            
+            self.cards.sort(key = attrgetter('suit'))
+        elif Key == "AceHigh":
+            #sort by rank with Ace as high card
+            self.cards.sort(key = attrgetter('aceValue'))
         return
 
-    def printCards(self):
+    def print_cards(self):
         for card in self.cards:
             eachCard = card
             print(eachCard.rank, "of", eachCard.suit, '=', eachCard.cardValue)        
@@ -114,7 +127,7 @@ class CardCollection:
         self.removeCard(index)
         return cardDealt
 
-    def countCards(self):
+    def count_cards(self):
         return len(self.cards)
 
         
@@ -134,8 +147,7 @@ class Deck(CardCollection) :
         for suit in suits:
             for rank in ranks:
                 newCard = Card(rank, suit)
-                self.cards.append(newCard)
-                
+                self.cards.append(newCard) 
         return
 
         
@@ -146,7 +158,45 @@ class Hand(CardCollection):
 
     def dummy():
         return
+
+    def evaluate(self):
+    # Evaluate a hand, to determine its value
+    # Hand values are, highest to lowest:
+    #   Royal Flush
+    #   Four of a kind
+    #   Straight Flush
+    #   Full House
+    #   Flush
+    #   Straight
+    #   Three of a Kind
+    #   Two Pair
+    #   Pair
+    #   High Card
+        result = ""
+
+        # First, determine if that there are 5 cards
+        if self.countCards() != 5 :
+            return 'Wrong Hand Size'
+        if self.containsFlush():
+            result = 'Flush'
+
+        # Next, start checking from highest possible hand
+        return result
+
+    def containsStraight(self):
+        return False
+
+    def containsFlush(self):
+        # Determine if all cards are the samesuit
+        allSameSuit = True
+        mySuit = self.cards[1].suit
+        for thisCard in self.cards:
+            if  thisCard.suit != mySuit:
+                allSameSuit = False
+        return allSameSuit
         
+
+
         
 # =================================================================================
 # Table Object
